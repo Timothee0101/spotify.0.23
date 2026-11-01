@@ -18,11 +18,7 @@ else
 endif
 
 BUILD := build/$(PLATFORM)$(if $(SANITIZE),-$(SANITIZE))
-ifeq ($(PLATFORM),ios)
-CC := xcrun clang -isysroot $(or $(SYSROOT),$(or $(THEOS),$(HOME)/theos)/sdks/iPhoneOS16.5.sdk)
-else
 CC := xcrun -sdk $(SDK) clang
-endif
 CFLAGS := -target $(TARGET) -O2 -g -w -fvisibility=hidden -DEEL_TARGET_PORTABLE -DNSEEL_LOOPFUNC_SUPPORT_MAXLEN=1048576 \
           -Ieel2-parser -Iwdl/eel2 $(if $(SANITIZE),-fsanitize=$(SANITIZE) -fno-omit-frame-pointer)
 
